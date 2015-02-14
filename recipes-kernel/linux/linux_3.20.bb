@@ -20,7 +20,7 @@ PR = "r1"
 PV = "${LINUX_VERSION}+git-${TAG}"
 
 # Include only supported boards for now
-COMPATIBLE_MACHINE = "(radxa-rock|mars-board)"
+COMPATIBLE_MACHINE = "(radxa-rock|mars-board|firefly)"
 
 # Build the devicetree blob in kernel_do_compile
 KERNEL_ALT_IMAGETYPE = "${KERNEL_DEVICETREE_NAME}.dtb"
