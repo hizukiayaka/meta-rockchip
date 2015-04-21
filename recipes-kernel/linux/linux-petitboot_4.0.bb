@@ -5,6 +5,7 @@ inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git;nobranch=1 \
+	file://0001-ARM-dts-rockchip-enable-gmac-on-rk3288-firefly.patch \
 	file://defconfig"
 
 SRCREV = "39a8804455fb23f09157341d3ba7db6d7ae6ee76"
