@@ -10,19 +10,19 @@ This layer depends on:
 
   {
   	URI: git://git.openembedded.org/bitbake
-  	branch: lastest release
+  	branch: dizzy
 
   	AND
 
   	URI: git://git.openembedded.org/openembedded-core
   	layers: meta
-  	branch: lastest release
+  	branch: dizzy
   }
 
   OR
 
   URI: git://git.yoctoproject.org/poky
-  branch: lastest release
+  branch: dizzy
 
 
 Patches
@@ -91,8 +91,8 @@ In a terminal, just type the following command:
 
 At the end of a successful build, you should have an image
 /path/to/yocto/build/tmp/deploy/<MACHINE>/RK3XPetitbootLoader-<MACHINE>.bin.
-This image is already to the right format, so you can directly flash it to a
-Rockchip device with upgrade_tool.
+This image is already to the right format, so you can directly flash it as a
+kernel image to a Rockchip device with upgrade_tool.
 
 III. Booting your device
 ========================
