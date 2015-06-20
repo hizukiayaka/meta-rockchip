@@ -4,11 +4,11 @@
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
-TAG = "next-20150415"
+TAG = "next-20150619"
 SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git;nobranch=1 \
 	file://defconfig"
 
-SRCREV = "fb5e230888b2b734a061e853b3729acdaae7a537"
+SRCREV = "c1ce6ea24e13fcdb61c75d7bb24377d11478b3c4"
 # Override this variable in order to don't pass --noallconfig to configme,
 # which restarts configuration from scratch most of the time
 KCONFIG_MODE = " "
@@ -17,16 +17,8 @@ LINUX_VERSION = "4.2"
 # And not "yocto-standard"
 LINUX_VERSION_EXTENSION = ""
 PR = "r1"
-PV = "${LINUX_VERSION}+git-${TAG}"
+PV = "${LINUX_VERSION}+git+${TAG}"
 
 # Include only supported boards for now
 COMPATIBLE_MACHINE = "(radxa-rock|mars-board|firefly)"
 
-# Build the devicetree blob in kernel_do_compile
-KERNEL_ALT_IMAGETYPE = "${KERNEL_DEVICETREE_NAME}.dtb"
-# The resulting image to be deployed in DEPLOY_IMAGE_DIR
-KERNEL_OUTPUT = "${B}/arch/${ARCH}/boot/${KERNEL_IMAGETYPE}-dtb"
-
-do_compile_append() {
-    cat ${B}/arch/${ARCH}/boot/${KERNEL_IMAGETYPE} ${B}/arch/${ARCH}/boot/dts/${KERNEL_ALT_IMAGETYPE} > ${KERNEL_OUTPUT}
-}
