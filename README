@@ -10,19 +10,19 @@ This layer depends on:
 
   {
   	URI: git://git.openembedded.org/bitbake
-  	branch: dizzy
+	branch: fido
 
   	AND
 
   	URI: git://git.openembedded.org/openembedded-core
   	layers: meta
-  	branch: dizzy
+	branch: fido
   }
 
   OR
 
   URI: git://git.yoctoproject.org/poky
-  branch: dizzy
+  branch: fido
 
 
 Patches
@@ -48,7 +48,7 @@ need to download the corresponding tools described in the "Dependencies"
 section. Be sure that everything is in the same directory.
 
 ~ $ mkdir yocto; cd yocto
-~/yocto $ git clone git://git.yoctoproject.org/poky -b dizzy
+~/yocto $ git clone git://git.yoctoproject.org/poky -b fido
 ~/yocto $ git clone https://github.com/linux-rockchip/meta-rockchip.git
 
 Then you need to source the configuration script:
