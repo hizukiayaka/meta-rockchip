@@ -19,13 +19,14 @@ LINUX_VERSION_EXTENSION = ""
 PR = "r1"
 PV = "${LINUX_VERSION}"
 
+PROVIDES = "${PN}"
 DEPENDS += "rkflashtool-native"
 
 # Include only supported boards for now
 COMPATIBLE_MACHINE = "(radxa-rock|mars-board|firefly)"
 
 # Build the devicetree blob in kernel_do_compile
-KERNEL_ALT_IMAGETYPE = "${KERNEL_DEVICETREE_NAME}.dtb"
+KERNEL_ALT_IMAGETYPE = "${KERNEL_DEVICETREE}"
 # The resulting image to be deployed in DEPLOY_IMAGE_DIR
 KERNEL_OUTPUT = "${B}/arch/${ARCH}/boot/${KERNEL_IMAGETYPE}-dtb"
 
