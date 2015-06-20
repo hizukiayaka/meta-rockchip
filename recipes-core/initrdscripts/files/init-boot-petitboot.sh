@@ -7,6 +7,7 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 mount -t proc proc /proc
 mount -t sysfs sysfs /sys
 mount -t devtmpfs dev /dev
+mkdir /var/volatile/log /var/volatile/tmp
 /lib/udev/udevd --daemon
 pb-discover --verbose -l /var/log/pb-discover.log &
 udevadm trigger --action=add
@@ -15,4 +16,3 @@ udevadm settle
 clear
 export TERM=screen
 petitboot-nc
-
