@@ -2,7 +2,7 @@
 # Released under the MIT license (see COPYING.MIT for the terms)
 
 DESCRIPTION = "Tools for flashing Rockchip devices"
-LICENSE = "AS IS"
+LICENSE = "ASIS"
 LIC_FILES_CHKSUM = "file://rkcrc.c;beginline=1;endline=25;md5=5c55527c991502a9b86b768674cdcff5"
 
 DEPENDS += "libusb-native"
