@@ -19,5 +19,4 @@ PR = "r1"
 PV = "${LINUX_VERSION}"
 
 # Include only supported boards for now
-COMPATIBLE_MACHINE = "(radxa-rock|mars-board|firefly)"
-
+COMPATIBLE_MACHINE = "(rk3188-radxarock|rk3066a-marsboard|rk3288-firefly)"
