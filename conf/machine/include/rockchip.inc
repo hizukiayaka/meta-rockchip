@@ -19,5 +19,5 @@ KERNEL_IMAGETYPE = "zImage"
 IMAGE_CLASSES += "rockchip-update-img"
 IMAGE_FSTYPES += "ext4 rockchip-update-img"
 
-SERIAL_CONSOLES = "115200;ttyFIQ0"
+SERIAL_CONSOLES ?= "115200;ttyFIQ0"
 
