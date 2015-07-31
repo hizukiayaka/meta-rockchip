@@ -29,9 +29,10 @@ Patches
 =======
 
 Please submit any patches against this BSP to
-https://github.com/linux-rockchip/meta-rockchip and cc: the maintainer:
+http://bugzilla.yoctoproject.org and cc: the following maintainers:
 
 Maintainer: Romain Perier <romain.perier@gmail.com>
+Maintainer: Trevor Woerner <twoerner@gmail.com>
 
 Table of Contents
 =================
@@ -49,7 +50,7 @@ section. Be sure that everything is in the same directory.
 
 ~ $ mkdir yocto; cd yocto
 ~/yocto $ git clone git://git.yoctoproject.org/poky -b fido
-~/yocto $ git clone https://github.com/linux-rockchip/meta-rockchip.git
+~/yocto $ git clone git://git.yoctoproject.org/meta-rockchip
 
 Then you need to source the configuration script:
 ~/yocto $ source poky/oe-init-build-env
@@ -64,7 +65,7 @@ common metadata shared between BSPs) e.g.:
 
 To enable the build for a specific board, add its name in the MACHINE variable to local.conf:
 
-  MACHINE ?= "radxa-rock"
+  MACHINE ?= "rk3188-radxarock"
 
 All supported machines can be found in meta-rockchip/conf/machine.
 
