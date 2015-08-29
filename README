@@ -10,19 +10,20 @@ This layer depends on:
 
   {
   	URI: git://git.openembedded.org/bitbake
-	branch: fido
+	branch: master
 
   	AND
 
   	URI: git://git.openembedded.org/openembedded-core
   	layers: meta
-	branch: fido
+	branch: master
   }
 
   OR
 
   URI: git://git.yoctoproject.org/poky
-  branch: fido
+  branch: master
+  Tag: 1.9_M2
 
 
 Contributing
