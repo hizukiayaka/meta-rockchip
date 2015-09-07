@@ -17,6 +17,8 @@ This layer depends on:
   	URI: git://git.openembedded.org/openembedded-core
   	layers: meta
 	branch: master
+	  at least 039211f0d8fe79d07b65f2f02e299b9656034214
+	  from Sep 4, 2015
   }
 
   OR
