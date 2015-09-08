@@ -16,8 +16,7 @@ PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip-3.0"
 
 KERNEL_IMAGETYPE = "zImage"
 
-IMAGE_CLASSES += "rockchip-update-img"
-IMAGE_FSTYPES += "ext4 rockchip-update-img"
+IMAGE_FSTYPES += "ext4"
 
 SERIAL_CONSOLES ?= "115200;ttyFIQ0"
 
