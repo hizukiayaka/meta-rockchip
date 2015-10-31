@@ -20,4 +20,4 @@ PR = "r1"
 PV = "${LINUX_VERSION}+git+${TAG}"
 
 # Include only supported boards for now
-COMPATIBLE_MACHINE = "(rk3188-radxarock|rk3066a-marsboard|rk3288-firefly)"
+COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288)"

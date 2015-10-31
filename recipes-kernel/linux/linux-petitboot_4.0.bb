@@ -23,7 +23,7 @@ PROVIDES = "${PN}"
 DEPENDS += "rkflashtool-native"
 
 # Include only supported boards for now
-COMPATIBLE_MACHINE = "(rk3188-radxarock|rk3066a-marsboard|rk3288-firefly)"
+COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288)"
 
 # Build the devicetree blob in kernel_do_compile
 KERNEL_ALT_IMAGETYPE = "${KERNEL_DEVICETREE}"

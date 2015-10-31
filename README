@@ -74,7 +74,7 @@ common metadata shared between BSPs) e.g.:
 
 To enable the build for a specific board, add its name in the MACHINE variable to local.conf:
 
-  MACHINE ?= "rk3188-radxarock"
+  MACHINE ?= "radxarock"
 
 All supported machines can be found in meta-rockchip/conf/machine.
 
