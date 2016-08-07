@@ -4,8 +4,7 @@
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
-SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=linux-4.1.y \
-	file://defconfig"
+SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=linux-4.1.y"
 
 SRCREV = "${AUTOREV}"
 # Override this variable in order to don't pass --noallconfig to configme,
@@ -20,3 +19,5 @@ PV = "${LINUX_VERSION}"
 
 # Include only supported boards for now
 COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288)"
+KERNEL_CONFIG_COMMAND = "oe_runmake -C ${S} O=${B} ${@d.getVar('KERNEL_DEFCONFIG', True) or ""}"
+deltask kernel_configme
