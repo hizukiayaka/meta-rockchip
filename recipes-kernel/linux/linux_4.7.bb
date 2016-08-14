@@ -14,6 +14,6 @@ PR = "r1"
 PV = "${LINUX_VERSION}"
 
 # Include only supported boards for now
-COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288)"
+COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288|rock2-square)"
 KERNEL_CONFIG_COMMAND = "oe_runmake -C ${S} O=${B} ${@d.getVar('KERNEL_DEFCONFIG', True) or ""}"
 deltask kernel_configme
