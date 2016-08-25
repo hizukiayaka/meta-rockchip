@@ -19,5 +19,5 @@ KERNEL_IMAGETYPE = "zImage"
 IMAGE_FSTYPES += "ext4"
 
 SERIAL_CONSOLES ?= "115200;ttyFIQ0"
-KERNEL_DEFCONFIG = "multi_v7_defconfig"
+KBUILD_DEFCONFIG = "multi_v7_defconfig"
 
