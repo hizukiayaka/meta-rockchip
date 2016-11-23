@@ -34,7 +34,7 @@ Contributing
 Please submit any patches against this BSP to the Yocto Project mailing list:
 yocto@yoctoproject.org and cc: the following maintainers:
 
-Maintainer: Romain Perier <romain.perier@free-electrons.com>
+Maintainer: Romain Perier <romain.perier@gmail.com>
 Maintainer: Trevor Woerner <twoerner@gmail.com>
 
 When sending patches please take a look at the contribution guide available
