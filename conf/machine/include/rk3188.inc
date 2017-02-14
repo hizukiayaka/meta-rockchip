@@ -1,8 +1,10 @@
 # Copyright (C) 2015 Romain Perier
 # Released under the MIT license (see COPYING.MIT for the terms)
 
-require conf/machine/include/tune-cortexa9.inc
+SOC_FAMILY  = "rk3188"
 
+require conf/machine/include/tune-cortexa9.inc
+require conf/machine/include/soc-family.inc
 PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
 
 XSERVER = "xserver-xorg \
