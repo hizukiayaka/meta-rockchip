@@ -10,22 +10,19 @@ This layer depends on:
 
   {
   	URI: git://git.openembedded.org/bitbake
-	branch: master
+	branch: <the same release used for meta-rockchip>
 
   	AND
 
   	URI: git://git.openembedded.org/openembedded-core
   	layers: meta
-	branch: master
-	  at least 039211f0d8fe79d07b65f2f02e299b9656034214
-	  from Sep 4, 2015
+	branch: <the same release used for meta-rockchip>
   }
 
   OR
 
   URI: git://git.yoctoproject.org/poky
-  branch: master
-  Tag: 1.9_M2
+  branch: <the same release used for meta-rockchip>
 
 
 Contributing
@@ -34,7 +31,7 @@ Contributing
 Please submit any patches against this BSP to the Yocto Project mailing list:
 yocto@yoctoproject.org and cc: the following maintainers:
 
-Maintainer: Romain Perier <romain.perier@gmail.com>
+Maintainer: Romain Perier <romain.perier@collabora.com>
 Maintainer: Trevor Woerner <twoerner@gmail.com>
 
 When sending patches please take a look at the contribution guide available
