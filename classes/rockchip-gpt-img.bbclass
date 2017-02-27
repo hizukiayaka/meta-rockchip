@@ -102,12 +102,14 @@ create_rk_image () {
 	# Create boot partition image
 	BOOT_BLOCKS=$(LC_ALL=C parted -s ${GPTIMG} unit b print | awk '/ 6 / { print substr($4, 1, length($4 -1)) / 512 /2 }')
 	BOOT_BLOCKS=`expr $BOOT_BLOCKS / 63 \* 63`
+	BOOT_BLOCKS=$(expr $BOOT_BLOCKS + $(expr 16 - $(expr $BOOT_BLOCKS % 16)))
 
-	mkfs.vfat -n "boot" -S 512 -C ${WORKDIR}/${BOOT_IMG} $BOOT_BLOCKS
+	mkfs.vfat -n "BOOT" -S 512 -C ${WORKDIR}/${BOOT_IMG} $BOOT_BLOCKS
 	mcopy -i ${WORKDIR}/${BOOT_IMG} -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::${KERNEL_IMAGETYPE}
 
 	DEVICETREE_DEFAULT=""
 	for DTS_FILE in ${KERNEL_DEVICETREE}; do
+		DTS_FILE=${DTS_FILE##*/}
 		[ -n "${DEVICETREE_DEFAULT}"] && DEVICETREE_DEFAULT="${DTS_FILE}"
 		mcopy -i ${WORKDIR}/${BOOT_IMG} -s ${DEPLOY_DIR_IMAGE}/${DTS_FILE} ::${DTS_FILE}
 	done
