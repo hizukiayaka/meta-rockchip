@@ -18,7 +18,7 @@ SRC_URI = " \
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 
-do_deploy_prepend () {
+do_install_prepend () {
 	# copy to default search path
 	cp ${B}/spl/${SPL_BINARY} ${B}/
 }
