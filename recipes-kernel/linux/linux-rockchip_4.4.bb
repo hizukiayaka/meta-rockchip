@@ -3,8 +3,8 @@
 
 require recipes-kernel/linux/linux-yocto.inc
 
-KERNELBRANCH ?= "release-4.4"
-SRC_URI = "git://github.com/rockchip-linux/kernel.git;branch=${KERNELBRANCH}"
+KERNELBRANCH ?= "develop-4.4"
+SRC_URI = "git://git.sumomo.pri/rock-chips/sdk-kernel.git;protocol=ssh;branch=${KERNELBRANCH}"
 
 SRCREV = "${AUTOREV}"
 LINUX_VERSION = "4.4.167"
@@ -31,6 +31,7 @@ sysroot_stage_all_append_class-target() {
 	mkdir -p "${SYSROOT_DESTDIR}/usr/include/video/"
         cp "${D}/usr/include/video/rk_vpu_service.h" "${SYSROOT_DESTDIR}/usr/include/video/rk_vpu_service.h"
 }
+
 sysroot_stage_all_append_class-nativesdk() {
 	mkdir -p "${SYSROOT_DESTDIR}/usr/include/video/"
         cp "${D}/usr/include/video/rk_vpu_service.h" "${SYSROOT_DESTDIR}/usr/include/video/rk_vpu_service.h"
