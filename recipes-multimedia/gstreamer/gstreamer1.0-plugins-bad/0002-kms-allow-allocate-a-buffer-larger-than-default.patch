@@ -1,0 +1,118 @@
+From 32efc60bcee8263648fa00f3a418bc35865e151a Mon Sep 17 00:00:00 2001
+From: ayaka <ayaka@soulik.info>
+Date: Fri, 13 Apr 2018 01:20:18 +0800
+Subject: [PATCH 2/2] kms: allow allocate a buffer larger than default
+
+Although the buffer is large enough, but when the stride is not
+from the upstream buffer, the video image won't be displayed
+correctly.
+
+I may take back the allocation_caps from the upstream element,
+but the width and height are used for the alignment width and
+height, the height won't used to expend the buffer size.
+
+Signed-off-by: ayaka <ayaka@soulik.info>
+---
+ sys/kms/gstkmsallocator.c  | 27 +++++++++++++++++++--------
+ sys/kms/gstkmsbufferpool.c |  5 ++++-
+ 2 files changed, 23 insertions(+), 9 deletions(-)
+
+diff --git a/sys/kms/gstkmsallocator.c b/sys/kms/gstkmsallocator.c
+index 334f62287..b3144b13f 100644
+--- a/sys/kms/gstkmsallocator.c
++++ b/sys/kms/gstkmsallocator.c
+@@ -167,7 +167,7 @@ static gboolean
+ gst_kms_allocator_memory_create (GstKMSAllocator * allocator,
+     GstKMSMemory * kmsmem, GstVideoInfo * vinfo)
+ {
+-  gint i, ret, h;
++  gint i, ret, h, hh, height;
+   struct drm_mode_create_dumb arg = { 0, };
+   guint32 fmt;
+   gint num_planes = GST_VIDEO_INFO_N_PLANES (vinfo);
+@@ -186,8 +186,11 @@ gst_kms_allocator_memory_create (GstKMSAllocator * allocator,
+   fmt = gst_drm_format_from_video (GST_VIDEO_INFO_FORMAT (vinfo));
+   arg.bpp = gst_drm_bpp_from_drm (fmt);
+   arg.width = GST_VIDEO_INFO_WIDTH (vinfo);
+-  h = GST_VIDEO_INFO_HEIGHT (vinfo);
+-  arg.height = gst_drm_height_from_drm (fmt, h);
++
++  h = gst_drm_height_from_drm (fmt, GST_VIDEO_INFO_HEIGHT (vinfo));
++  height = vinfo->size / arg.width;
++  hh = MAX (h, height);
++  arg.height = hh;
+ 
+   ret = drmIoctl (allocator->priv->fd, DRM_IOCTL_MODE_CREATE_DUMB, &arg);
+   if (ret)
+@@ -197,7 +200,7 @@ gst_kms_allocator_memory_create (GstKMSAllocator * allocator,
+     goto done;
+ 
+   for (i = 0; i < num_planes; i++) {
+-    guint32 pitch;
++    guint32 pitch, stride;
+ 
+     if (!arg.pitch)
+       continue;
+@@ -205,12 +208,19 @@ gst_kms_allocator_memory_create (GstKMSAllocator * allocator,
+     /* Overwrite the video info's stride and offset using the pitch calculcated
+      * by the kms driver. */
+     pitch = extrapolate_stride (vinfo->finfo, i, arg.pitch);
+-    GST_VIDEO_INFO_PLANE_STRIDE (vinfo, i) = pitch;
+-    GST_VIDEO_INFO_PLANE_OFFSET (vinfo, i) = offs;
++    stride = GST_VIDEO_INFO_PLANE_STRIDE (vinfo, i);
++
++    GST_VIDEO_INFO_PLANE_STRIDE (vinfo, i) = MAX (stride, pitch);
++    if (GST_VIDEO_INFO_PLANE_OFFSET (vinfo, i) > offs)
++      offs = GST_VIDEO_INFO_PLANE_OFFSET (vinfo, i);
++    else
++      GST_VIDEO_INFO_PLANE_OFFSET (vinfo, i) = offs;
+ 
+     /* Note that we cannot negotiate special padding betweem each planes,
+      * hence using the display height here. */
+-    offs += pitch * GST_VIDEO_FORMAT_INFO_SCALE_HEIGHT (vinfo->finfo, i, h);
++    offs +=
++        pitch * GST_VIDEO_FORMAT_INFO_SCALE_HEIGHT (vinfo->finfo, i,
++        GST_VIDEO_INFO_HEIGHT (vinfo));
+ 
+     GST_DEBUG_OBJECT (allocator, "Created BO plane %i with stride %i and "
+         "offset %" G_GSIZE_FORMAT, i,
+@@ -219,7 +229,8 @@ gst_kms_allocator_memory_create (GstKMSAllocator * allocator,
+   }
+ 
+   /* Update with the size use for display, excluding any padding at the end */
+-  GST_VIDEO_INFO_SIZE (vinfo) = offs;
++  if (GST_VIDEO_INFO_SIZE (vinfo) < offs)
++    GST_VIDEO_INFO_SIZE (vinfo) = offs;
+ 
+ done:
+   kmsmem->bo->handle = arg.handle;
+diff --git a/sys/kms/gstkmsbufferpool.c b/sys/kms/gstkmsbufferpool.c
+index 7c02aa21f..a291d4bd4 100644
+--- a/sys/kms/gstkmsbufferpool.c
++++ b/sys/kms/gstkmsbufferpool.c
+@@ -69,11 +69,12 @@ gst_kms_buffer_pool_set_config (GstBufferPool * pool, GstStructure * config)
+   GstVideoInfo vinfo;
+   GstAllocator *allocator;
+   GstAllocationParams params;
++  guint size = 0;
+ 
+   vpool = GST_KMS_BUFFER_POOL_CAST (pool);
+   priv = vpool->priv;
+ 
+-  if (!gst_buffer_pool_config_get_params (config, &caps, NULL, NULL, NULL))
++  if (!gst_buffer_pool_config_get_params (config, &caps, &size, NULL, NULL))
+     goto wrong_config;
+ 
+   if (!caps)
+@@ -95,6 +96,8 @@ gst_kms_buffer_pool_set_config (GstBufferPool * pool, GstStructure * config)
+   if (!priv->allocator)
+     goto no_allocator;
+ 
++  if (size > vinfo.size)
++    vinfo.size = size;
+   priv->vinfo = vinfo;
+ 
+   /* enable metadata based on config of the pool */
+-- 
+2.14.5
+

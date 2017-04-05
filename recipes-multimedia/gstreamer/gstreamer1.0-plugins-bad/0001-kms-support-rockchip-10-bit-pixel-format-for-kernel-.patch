@@ -1,0 +1,56 @@
+From e44e6b25f4edd661285fe5cd3eb6b01bf84af572 Mon Sep 17 00:00:00 2001
+From: ayaka <ayaka@soulik.info>
+Date: Mon, 27 Mar 2017 21:57:01 +0800
+Subject: [PATCH 1/2] kms: support rockchip 10 bit pixel format for kernel 4.4
+
+Signed-off-by: ayaka <ayaka@soulik.info>
+---
+ sys/kms/gstkmsallocator.c | 1 +
+ sys/kms/gstkmsutils.c     | 5 +++++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/sys/kms/gstkmsallocator.c b/sys/kms/gstkmsallocator.c
+index 17e851d32..334f62287 100644
+--- a/sys/kms/gstkmsallocator.c
++++ b/sys/kms/gstkmsallocator.c
+@@ -151,6 +151,7 @@ extrapolate_stride (const GstVideoFormatInfo * finfo, gint plane, gint stride)
+     case GST_VIDEO_FORMAT_NV16:
+     case GST_VIDEO_FORMAT_NV61:
+     case GST_VIDEO_FORMAT_NV24:
++    case GST_VIDEO_FORMAT_NV12_10LE40:
+       estride = (plane == 0 ? 1 : 2) *
+           GST_VIDEO_FORMAT_INFO_SCALE_WIDTH (finfo, plane, stride);
+       break;
+diff --git a/sys/kms/gstkmsutils.c b/sys/kms/gstkmsutils.c
+index 90311f3fa..f7e271f3e 100644
+--- a/sys/kms/gstkmsutils.c
++++ b/sys/kms/gstkmsutils.c
+@@ -66,6 +66,7 @@ static const struct
+   DEF_FMT (NV12, NV12),
+   DEF_FMT (NV21, NV21),
+   DEF_FMT (NV16, NV16),
++  DEF_FMT (NV12_10, NV12_10LE40),
+ 
+ #undef DEF_FMT
+ };
+@@ -111,6 +112,9 @@ gst_drm_bpp_from_drm (guint32 drmfmt)
+     case DRM_FORMAT_NV16:
+       bpp = 8;
+       break;
++    case DRM_FORMAT_NV12_10:
++      bpp = 10;
++      break;
+     case DRM_FORMAT_UYVY:
+     case DRM_FORMAT_YUYV:
+     case DRM_FORMAT_YVYU:
+@@ -139,6 +143,7 @@ gst_drm_height_from_drm (guint32 drmfmt, guint32 height)
+     case DRM_FORMAT_YUV422:
+     case DRM_FORMAT_NV12:
+     case DRM_FORMAT_NV21:
++    case DRM_FORMAT_NV12_10:
+       ret = height * 3 / 2;
+       break;
+     case DRM_FORMAT_NV16:
+-- 
+2.14.5
+
