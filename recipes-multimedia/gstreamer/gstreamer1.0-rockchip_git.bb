@@ -8,11 +8,14 @@ include gstreamer1.0-rockchip.inc
 
 SRCBRANCH ?= "develop"
 SRC_URI = " \
-    git://github.com/rockchip-linux/gstreamer-rockchip.git;branch=${SRCBRANCH} \
-    git://anongit.freedesktop.org/gstreamer/common;destsuffix=git/common \
+    git://git.sumomo.pri/gstreamer/gstreamer-rockchip.git;branch=${SRCBRANCH};protocol=ssh \
+    git://git.sumomo.pri/gstreamer/common.git;destsuffix=git/common;protocol=ssh;branch=master;name=common \
 "
 
 SRCREV_FORMAT = "git"
 SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git"
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESPATH_prepend := "${THISDIR}/${PN}:"
