@@ -28,14 +28,17 @@ This layer depends on:
 Contributing
 ============
 
-Please submit any patches against this BSP to the Yocto Project mailing list:
-yocto@yoctoproject.org and cc: the following maintainers:
+Please submit any patches against this BSP to the maintainers of this layer. The
+mail must be sent *to the* following people (as "To:" in the header):
 
 Maintainer: Romain Perier <romain.perier@collabora.com>
 Maintainer: Trevor Woerner <twoerner@gmail.com>
 
-When sending patches please take a look at the contribution guide available
-here: https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
+Please also include the Yocto Project mailing list "yocto@yoctoproject.org",
+as Cc. (As "Cc:" in the header).
+
+When sending patches please take a look at the contribution guide
+available here: https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
 
 Please also send your patches by using git send-email and prefix your subject
 by "[meta-rockchip]".
