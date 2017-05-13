@@ -1,12 +1,12 @@
 # Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
 # Copyright (C) 2017 Trevor Woerner <twoerner@gmail.com>
+# Copyright (C) 2017 Romain Perier <romain.perier@collabora.com>
 # Released under the MIT license (see COPYING.MIT for the terms)
 
 require recipes-bsp/u-boot/u-boot.inc
+require recipes-bsp/u-boot/u-boot-common_2017.01.inc
 
 DESCRIPTION = "Rockchip next-dev U-Boot"
-LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
 COMPATIBLE_MACHINE = "(firefly-rk3288)"
 
 DEPENDS = "dtc-native bc-native"
@@ -17,7 +17,6 @@ SRC_URI = " \
 	"
 SRCREV = "${AUTOREV}"
 PV = "v2017.05+git${SRCPV}"
-S = "${WORKDIR}/git"
 
 do_compile_append () {
     # copy to default search path
