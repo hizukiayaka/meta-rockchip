@@ -4,7 +4,7 @@
 # Released under the MIT license (see COPYING.MIT for the terms)
 
 require recipes-bsp/u-boot/u-boot.inc
-require recipes-bsp/u-boot/u-boot-common_2017.07.inc
+require recipes-bsp/u-boot/u-boot-common_2017.09.inc
 
 DESCRIPTION = "Rockchip next-dev U-Boot"
 COMPATIBLE_MACHINE = "(firefly-rk3288|rock2-square)"
@@ -16,7 +16,7 @@ SRC_URI = " \
 	file://binutils-2.28-ld-fix.patch \
 	"
 SRCREV = "${AUTOREV}"
-PV = "v2017.05+git${SRCPV}"
+PV = "v2017.07+git${SRCPV}"
 
 do_compile_append () {
     # copy to default search path
