@@ -4,7 +4,7 @@
 # Released under the MIT license (see COPYING.MIT for the terms)
 
 require recipes-bsp/u-boot/u-boot.inc
-require recipes-bsp/u-boot/u-boot-common_2017.09.inc
+require recipes-bsp/u-boot/u-boot-common_2017.11.inc
 
 DESCRIPTION = "Rockchip next-dev U-Boot"
 COMPATIBLE_MACHINE = "(firefly-rk3288|rock2-square)"
