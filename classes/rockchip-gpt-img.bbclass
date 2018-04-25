@@ -6,7 +6,7 @@ inherit image_types
 
 # Use an uncompressed ext4 by default as rootfs
 IMG_ROOTFS_TYPE = "ext4"
-IMG_ROOTFS = "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.${IMG_ROOTFS_TYPE}"
+IMG_ROOTFS = "${IMGDEPLOYDIR}/${IMAGE_LINK_NAME}.${IMG_ROOTFS_TYPE}"
 
 # This image depends on the rootfs image
 IMAGE_TYPEDEP_rockchip-gpt-img = "${IMG_ROOTFS_TYPE}"
