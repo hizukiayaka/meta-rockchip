@@ -20,6 +20,7 @@ MINILOADER     = "loader.bin"
 UBOOT          = "u-boot.out"
 TRUST          = "trust.out"
 GPTIMG_APPEND ?= "console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk2p7 rootfstype=ext4 init=/sbin/init"
+GPTIMG_APPEND_tinker-rk3288 = "console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk0p7 rootfstype=ext4 init=/sbin/init"
 
 # default partitions [in Sectors]
 # More info at http://rockchip.wikidot.com/partitions

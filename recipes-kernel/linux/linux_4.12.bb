@@ -15,6 +15,6 @@ PR = "r1"
 PV = "${LINUX_VERSION}"
 
 # Include only supported boards for now
-COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288|rock2-square)"
+COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288|rock2-square|tinker-rk3288)"
 deltask kernel_configme
 
