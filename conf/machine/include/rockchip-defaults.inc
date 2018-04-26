@@ -1,7 +1,8 @@
 # meta-rockchip default settings
 
 # kernel
-PREFERRED_PROVIDER_virtual/kernel ?= "linux"
+PREFERRED_PROVIDER_virtual/kernel ?= "linux-stable"
+PREFERRED_VERSION_linux-stable ?= "4.16%"
 LINUX_VERSION_EXTENSION ?= "-rockchip"
 KBUILD_DEFCONFIG = "multi_v7_defconfig"
 KERNEL_IMAGETYPE = "zImage"
