@@ -11,7 +11,12 @@ KERNEL_IMAGETYPE = "zImage"
 PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
 XSERVER = " \
 	xserver-xorg \
-	xf86-video-fbturbo \
+	xserver-xorg-utils \
+	xserver-xorg-xvfb \
+	xserver-xorg-extension-glx \
+	xserver-xorg-module-libwfb \
+	xserver-xorg-module-exa \
+	xf86-video-modesetting \
 	xf86-input-evdev \
 	xf86-input-mouse \
 	xf86-input-keyboard \
