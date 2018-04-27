@@ -1,6 +1,8 @@
 # Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
 # Released under the MIT license (see COPYING.MIT for the terms)
 
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
 include u-boot-rockchip.inc
 
 TAG = "release-${PV}"
