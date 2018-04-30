@@ -9,7 +9,7 @@ require conf/machine/include/rockchip-defaults.inc
 
 SERIAL_CONSOLES = "115200;ttyS2"
 
-PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot-rockchip"
+PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
 SPL_BINARY ?= "u-boot-spl-dtb.bin"
 
 IMAGE_FSTYPES = "rockchip-gpt-img"
