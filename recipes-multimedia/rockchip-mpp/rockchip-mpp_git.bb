@@ -11,6 +11,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 FILESPATH_prepend := "${THISDIR}/${PN}:"
 
 SRCREV = "${AUTOREV}"
-SRC_URI = "git://github.com/rockchip-linux/mpp.git;branch=for_linux"
+SRC_URI = "git://github.com/hizukiayaka/rockchip_mpp.git;branch=for_linux"
 
 S = "${WORKDIR}/git"
