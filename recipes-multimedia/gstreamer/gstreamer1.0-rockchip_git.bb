@@ -8,7 +8,7 @@ include gstreamer1.0-rockchip.inc
 
 SRCBRANCH ?= "develop"
 SRC_URI = " \
-    git://github.com/rockchip-linux/gstreamer-rockchip.git;branch=${SRCBRANCH} \
+    git://gitlab.freedesktop.org/ayaka/gstreamer-rockchip.git;branch=${SRCBRANCH};protocol=ssh \
     git://anongit.freedesktop.org/gstreamer/common;destsuffix=git/common \
 "
 
