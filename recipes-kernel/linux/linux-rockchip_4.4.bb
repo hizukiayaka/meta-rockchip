@@ -3,8 +3,7 @@
 
 require recipes-kernel/linux/linux-yocto.inc
 
-KERNELBRANCH ?= "develop-4.4"
-SRC_URI = "git://git.sumomo.pri/rock-chips/sdk-kernel.git;protocol=ssh;branch=${KERNELBRANCH}"
+SRC_URI = "git://github.com/rockchip-linux/kernel.git;branch=release-4.4;"
 
 SRCREV = "${AUTOREV}"
 LINUX_VERSION = "4.4.167"
