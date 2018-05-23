@@ -13,8 +13,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343 \
 S = "${WORKDIR}/git"
 
 SRC_URI = " \
-    git://git.sumomo.pri/gstreamer/gst-plugins-good.git;protocol=ssh;branch=master;name=base \
-    git://git.sumomo.pri/gstreamer/common.git;destsuffix=git/common;protocol=ssh;branch=master;name=common \
+    git://anongit.freedesktop.org/gstreamer/gst-plugins-good;branch=master;name=base \
+    git://anongit.freedesktop.org/gstreamer/common;destsuffix=git/common;branch=master;name=common \
     file://0001-introspection.m4-prefix-pkgconfig-paths-with-PKG_CON.patch \
 "
 

@@ -12,8 +12,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6762ed442b3822387a51c92d928ead0d \
 S = "${WORKDIR}/git"
 
 SRC_URI = " \
-    git://git.sumomo.pri/gstreamer/gst-plugins-base.git;protocol=ssh;branch=master;name=base \
-    git://git.sumomo.pri/gstreamer/common.git;destsuffix=git/common;protocol=ssh;branch=master;name=common \
+    git://anongit.freedesktop.org/gstreamer/gst-plugins-base;branch=master;name=base \
+    git://anongit.freedesktop.org/gstreamer/common;destsuffix=git/common;branch=master;name=common \
     file://0001-introspection.m4-prefix-pkgconfig-paths-with-PKG_CON.patch \
     file://0001-Makefile.am-prefix-calls-to-pkg-config-with-PKG_CONF.patch \
     file://0002-riff-add-missing-include-directories-when-calling-in.patch \

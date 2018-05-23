@@ -14,8 +14,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73a5855a8119deb017f5f13cf327095d \
 "
 
 SRC_URI = " \
-    git://git.sumomo.pri/gstreamer/gst-plugins-bad.git;protocol=ssh;branch=master;name=base \
-    git://git.sumomo.pri/gstreamer/common.git;destsuffix=git/common;protocol=ssh;branch=master;name=common \
+    git://anongit.freedesktop.org/gstreamer/gst-plugins-bad;branch=master;name=base \
+    git://anongit.freedesktop.org/gstreamer/common;destsuffix=git/common;branch=master;name=common \
     file://configure-allow-to-disable-libssh2.patch \
     file://fix-maybe-uninitialized-warnings-when-compiling-with-Os.patch \
     file://0001-introspection.m4-prefix-pkgconfig-paths-with-PKG_CON.patch \
