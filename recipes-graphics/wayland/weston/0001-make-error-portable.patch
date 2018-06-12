@@ -1,0 +1,80 @@
+From e8e2c5e615483eda5ed59c2c91e3b12e736f96f2 Mon Sep 17 00:00:00 2001
+From: Randy 'ayaka' Li <ayaka@soulik.info>
+Date: Thu, 28 Mar 2019 18:31:08 +0800
+Subject: [PATCH] make error() portable
+
+error() is not posix but gnu extension so may not be available on all
+kind of systemsi e.g. musl.
+
+Signed-off-by: Randy 'ayaka' Li <ayaka@soulik.info>
+---
+ libweston/weston-error.h  | 23 +++++++++++++++++++++++
+ libweston/weston-launch.c |  2 +-
+ meson.build               |  1 +
+ 3 files changed, 25 insertions(+), 1 deletion(-)
+ create mode 100644 libweston/weston-error.h
+
+diff --git a/libweston/weston-error.h b/libweston/weston-error.h
+new file mode 100644
+index 00000000..0ba373f7
+--- /dev/null
++++ b/libweston/weston-error.h
+@@ -0,0 +1,23 @@
++#ifndef _WESTON_ERROR_H
++#define _WESTON_ERROR_H
++
++#if defined(HAVE_ERROR_H)
++#include <error.h>
++#else
++#include <string.h>
++#define _weston_error(S, E, F, ...) do { \
++	if (E)  { \
++		printf("\n"); \
++		fprintf(stderr, "weston: " F ": %s", ##__VA_ARGS__, strerror(E)); \
++		exit(S); \
++	} else  { \
++		printf("\n"); \
++		fprintf(stderr, "weston: " F, ##__VA_ARGS__); \
++		exit(S); \
++	} \
++} while(0)
++
++#define error _weston_error
++#endif
++
++#endif
+diff --git a/libweston/weston-launch.c b/libweston/weston-launch.c
+index bf73e0d6..90644394 100644
+--- a/libweston/weston-launch.c
++++ b/libweston/weston-launch.c
+@@ -33,7 +33,6 @@
+ #include <poll.h>
+ #include <errno.h>
+ 
+-#include <error.h>
+ #include <getopt.h>
+ 
+ #include <sys/types.h>
+@@ -59,6 +58,7 @@
+ #endif
+ 
+ #include "weston-launch.h"
++#include "weston-error.h"
+ 
+ #define DRM_MAJOR 226
+ 
+diff --git a/meson.build b/meson.build
+index aae96261..2f6c53d0 100644
+--- a/meson.build
++++ b/meson.build
+@@ -94,6 +94,7 @@ foreach func : optional_libc_funcs
+ endforeach
+ 
+ optional_system_headers = [
++	'error.h',
+ 	'linux/sync_file.h'
+ ]
+ foreach hdr : optional_system_headers
+-- 
+2.18.1
+

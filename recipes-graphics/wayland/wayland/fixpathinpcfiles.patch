@@ -1,0 +1,43 @@
+From 67882dbbd63db3e61139358cbbbd0fd67628584c Mon Sep 17 00:00:00 2001
+From: Randy Li <randy.li@rock-chips.com>
+Date: Tue, 12 Jun 2018 15:23:48 +0800
+Subject: [PATCH] Fix wayland-client and wayland-scanner pc files
+
+Upstream-Status: Pending
+
+Signed-off-by: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
+Signed-off-by: Randy Li <randy.li@rock-chips.com>
+---
+ src/wayland-client.pc.in  | 2 +-
+ src/wayland-scanner.pc.in | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/wayland-client.pc.in b/src/wayland-client.pc.in
+index eef61da..8221a87 100644
+--- a/src/wayland-client.pc.in
++++ b/src/wayland-client.pc.in
+@@ -1,7 +1,7 @@
+ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+ datarootdir=@datarootdir@
+-pkgdatadir=@datadir@/@PACKAGE@
++pkgdatadir=${pc_sysrootdir}@datadir@/@PACKAGE@
+ libdir=@libdir@
+ includedir=@includedir@
+ 
+diff --git a/src/wayland-scanner.pc.in b/src/wayland-scanner.pc.in
+index 7b2a4c9..feb5b64 100644
+--- a/src/wayland-scanner.pc.in
++++ b/src/wayland-scanner.pc.in
+@@ -2,7 +2,7 @@ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+ datarootdir=@datarootdir@
+ pkgdatadir=@datadir@/@PACKAGE@
+-wayland_scanner=@bindir@/wayland-scanner
++wayland_scanner=wayland-scanner
+ 
+ Name: Wayland Scanner
+ Description: Wayland scanner
+-- 
+2.7.4
+
