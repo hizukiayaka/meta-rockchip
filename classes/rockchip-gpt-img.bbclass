@@ -110,7 +110,7 @@ create_rk_image () {
 	DEVICETREE_DEFAULT=""
 	for DTS_FILE in ${KERNEL_DEVICETREE}; do
 		[ -n "${DEVICETREE_DEFAULT}"] && DEVICETREE_DEFAULT="${DTS_FILE}"
-		mcopy -i ${WORKDIR}/${BOOT_IMG} -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTS_FILE} ::${DTS_FILE}
+		mcopy -i ${WORKDIR}/${BOOT_IMG} -s ${DEPLOY_DIR_IMAGE}/${DTS_FILE} ::${DTS_FILE}
 	done
 
 	# Create extlinux config file
