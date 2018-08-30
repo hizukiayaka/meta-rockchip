@@ -24,7 +24,6 @@ Contributing
 Please submit any patches against this BSP to the maintainers of this layer.
 The mail must be sent *to the* following people (as "To:" in the header):
 
-	Maintainer: Romain Perier <romain.perier@collabora.com>
 	Maintainer: Trevor Woerner <twoerner@gmail.com>
 
 Please also include the Yocto Project mailing list "yocto@yoctoproject.org",
