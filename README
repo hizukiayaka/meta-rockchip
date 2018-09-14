@@ -1,73 +1,65 @@
-This README file contains information on building with the meta-rockchip BSP
-layer.
+OpenEmbedded BSP layer for Rockchip boards
 
-Dependencies
-============
+About:
+-----
+	The purpose of this layer is to provide OpenEmbedded BSP support for
+	Rockchip-based devices using upstream sources as much as possible.
 
-This layer depends on:
+Dependencies:
+------------
+	URI: git://git.openembedded.org/openembedded-core
+	layers: meta
+	branch: matched branches (e.g. master, sumo, ...)
 
-  {
-  	URI: git://git.openembedded.org/bitbake
-	branch: <the same release used for meta-rockchip>
+Status of supported boards:
+--------------------------
+	builds and boots gpt image:
+		tinker-rk3288
+		vyasa-rk3288
+	builds gpt image:
+		firefly-rk3288
+	builds:
+		marsboard-rk3066
+		radxarock
+		rock2-square
+	doesn't build:
+		veyron-speedy
 
-  	AND
+Maintenance:
+-----------
+	Please send pull requests, patches, comments, or questions to the
+	yocto mailing list (yocto@yoctoproject.org) CCing the maintainer
 
-  	URI: git://git.openembedded.org/openembedded-core
-  	layers: meta
-	branch: <the same release used for meta-rockchip>
-  }
+	When sending patches, please make sure the email subject line includes
+	"[meta-rockchip][PATCH]" and follow the community's patch submission
+	guidelines, as described in:
+		https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
+		https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
 
+	For example, to send your most recent commit (i.e. just one patch),
+	please use something like:
+		git format-patch -M --subject-prefix="meta-rockchip][PATCH" HEAD^
+		git send-email --to yocto@yoctoproject.org --cc twoerner@gmail.com <your patch file>
 
-Contributing
-============
+Maintainer:
+----------
+	Trevor Woerner <twoerner@gmail.com>
 
-Please submit any patches against this BSP to the maintainers of this layer.
-The mail must be sent *to the* following people (as "To:" in the header):
-
-	Maintainer: Trevor Woerner <twoerner@gmail.com>
-
-Please also include the Yocto Project mailing list "yocto@yoctoproject.org",
-as Cc. (As "Cc:" in the header).
-
-When sending patches please take a look at the contribution guide
-available here:
-
-	https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
-
-Please also send your patches by using git send-email and prefix your subject
-by "[meta-rockchip]".
-
-I. Configure yocto/oe environment
-=================================
-
-In order to build an image with BSP support for a given release, you
-need to download the corresponding tools described in the "Dependencies"
-section. Be sure that everything is in the same directory.
-
-	$ mkdir yocto; cd yocto
-	~/yocto $ git clone git://git.openembedded.org/bitbake
-	~/yocto $ git clone git://git.openembedded.org/openembedded-core
-	~/yocto $ git clone git://git.yoctoproject.org/meta-rockchip
-
-Then you need to source the configuration script:
-
-	~/yocto $ source openembedded-core/oe-init-build-env build bitbake
-
-Having done that, you can build an image for a rockchip board by adding the
-location of the meta-rockchip layer to bblayers.conf, along with any other
-layers needed (to access common metadata shared between BSPs)
-
-To enable the build for a specific board, add its name in the MACHINE variable
-to local.conf:
-
-	MACHINE ?= "radxarock"
-
-All supported machines can be found in meta-rockchip/conf/machine.
-
-You should then be able to build a image as such:
-
-	~/yocto/build $ bitbake core-image-minimal
-
-At the end of a successful build, you should have an image in
-
-	tmp-glibc/deploy/images/<MACHINE>/<IMAGE_NAME>
+Brief History:
+-------------
+	2014 April
+		- originally started by Julien Chauveau
+		- Romain Perier joins
+	2014 Sep
+		- Julien leaves
+	2015 Aug
+		- Trevor Woerner joins
+	2017 Mar
+		- developers from Rockchip fork this layer see:
+			https://github.com/rockchip-linux/meta-rockchip.git
+			http://rockchip.wikidot.com/yocto-user-guide
+	2017 May
+		- Romain leaves
+	2018 Feb
+		- Rockchip developers abandon their fork for buildroot
+			http://opensource.rock-chips.com/wiki_Buildroot
