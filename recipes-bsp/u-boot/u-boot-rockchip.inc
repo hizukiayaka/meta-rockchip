@@ -3,6 +3,7 @@
 # Released under the MIT license (see COPYING.MIT for the terms)
 
 require recipes-bsp/u-boot/u-boot.inc
+require recipes-bsp/u-boot/u-boot-common.inc
 
 DESCRIPTION = "Rockchip next-dev U-Boot"
 LICENSE = "GPLv2+"
