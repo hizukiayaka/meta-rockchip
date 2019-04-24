@@ -9,5 +9,9 @@ TAG = "release-${PV}"
 SRC_URI = " \
 	git://github.com/rockchip-linux/u-boot.git;tag=${TAG};nobranch=1; \
 	file://binutils-2.28-ld-fix.patch \
+	file://gcc7_fixup.patch \
+	file://gcc9-no-Werror.patch \
 "
 S = "${WORKDIR}/git"
+
+SRCREV = "release-20171218"

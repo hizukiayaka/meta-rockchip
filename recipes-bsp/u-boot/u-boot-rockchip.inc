@@ -2,6 +2,7 @@
 # Copyright (C) 2017 Trevor Woerner <twoerner@gmail.com>
 # Released under the MIT license (see COPYING.MIT for the terms)
 
+require recipes-bsp/u-boot/u-boot-common.inc
 require recipes-bsp/u-boot/u-boot.inc
 
 DESCRIPTION = "Rockchip next-dev U-Boot"
@@ -13,6 +14,17 @@ DEPENDS = "dtc-native bc-native swig-native"
 
 # u-boot will build native python module
 inherit pythonnative
+
+do_configure () {
+	if [ -z "${UBOOT_CONFIG}" ]; then
+	    if [ -n "${UBOOT_MACHINE}" ]; then
+	        oe_runmake -C ${S} O=${B} ${UBOOT_MACHINE}
+	    else
+	        oe_runmake -C ${S} O=${B} oldconfig
+	    fi
+	    cml1_do_configure
+	fi
+}
 
 do_compile_prepend () {
 	export STAGING_INCDIR=${STAGING_INCDIR_NATIVE};
