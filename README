@@ -16,7 +16,6 @@ Status of supported boards:
 	builds and boots gpt image:
 		tinker-rk3288
 		vyasa-rk3288
-	builds gpt image:
 		firefly-rk3288
 	builds:
 		marsboard-rk3066
