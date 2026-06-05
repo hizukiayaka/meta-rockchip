@@ -29,6 +29,7 @@ COMPATIBLE_MACHINE:rock-pi-4 = "rock-pi-4"
 COMPATIBLE_MACHINE:rock-pi-e = "rock-pi-e"
 COMPATIBLE_MACHINE:rock-pi-s = "rock-pi-s"
 COMPATIBLE_MACHINE:rock64 = "rock64"
+COMPATIBLE_MACHINE:rock-pro-64 = "rock-pro-64"
 COMPATIBLE_MACHINE:soquartz = "soquartz"
 
 SRC_URI:append:rockchip = " file://rockchip-kmeta;type=kmeta;name=rockchip-kmeta;destsuffix=rockchip-kmeta"
