@@ -1,0 +1,44 @@
+From d21e7004a63709ffde40985c93a8226e668c8a37 Mon Sep 17 00:00:00 2001
+From: Randy Li <ayaka@soulik.info>
+Date: Sat, 6 Jun 2026 15:49:22 +0800
+Subject: [PATCH 4/4] dts: rockpro64: enable usb otg gadget
+
+Upstream-Status: Pending
+---
+ arch/arm/dts/rk3399-rockpro64-u-boot.dtsi | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/arch/arm/dts/rk3399-rockpro64-u-boot.dtsi b/arch/arm/dts/rk3399-rockpro64-u-boot.dtsi
+index f5353476d81..6c5caef6c49 100644
+--- a/arch/arm/dts/rk3399-rockpro64-u-boot.dtsi
++++ b/arch/arm/dts/rk3399-rockpro64-u-boot.dtsi
+@@ -64,6 +64,26 @@
+ 	};
+ };
+ 
++&u2phy0 {
++	status = "okay";
++};
++
++&u2phy0_otg {
++	status = "okay";
++};
++
++&usbdrd3_0 {
++	status = "okay";
++};
++
++&usbdrd_dwc3_0 {
++	dr_mode = "peripheral";
++	maximum-speed = "high-speed";
++	phys = <&u2phy0_otg>;
++	phy-names = "usb2-phy";
++	status = "okay";
++};
++
+ &vcc3v0_sd {
+ 	bootph-pre-ram;
+ };
+-- 
+2.54.0
+

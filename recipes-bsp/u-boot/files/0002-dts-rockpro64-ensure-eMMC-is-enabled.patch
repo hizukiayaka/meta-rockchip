@@ -1,0 +1,35 @@
+From 9f6a04e5fdd579a114ec033616545a6416f7061a Mon Sep 17 00:00:00 2001
+From: Randy Li <ayaka@soulik.info>
+Date: Sat, 6 Jun 2026 13:12:56 +0800
+Subject: [PATCH 2/4] dts: rockpro64 ensure eMMC is enabled
+
+Upstream-Status: Pending
+---
+ arch/arm/dts/rk3399-rockpro64-u-boot.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/arch/arm/dts/rk3399-rockpro64-u-boot.dtsi b/arch/arm/dts/rk3399-rockpro64-u-boot.dtsi
+index cd84269dab4..f5353476d81 100644
+--- a/arch/arm/dts/rk3399-rockpro64-u-boot.dtsi
++++ b/arch/arm/dts/rk3399-rockpro64-u-boot.dtsi
+@@ -40,9 +40,17 @@
+ 	bootph-pre-ram;
+ };
+ 
++&emmc_phy {
++	status = "okay";
++};
++
+ &sdhci {
+ 	cap-mmc-highspeed;
+ 	mmc-ddr-1_8v;
++	no-sd;
++	no-sdio;
++	non-removable;
++	status = "okay";
+ };
+ 
+ &sdmmc0_pwr_h {
+-- 
+2.54.0
+

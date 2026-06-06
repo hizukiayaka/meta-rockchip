@@ -2,6 +2,13 @@ require u-boot-rockchip.inc
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
+SRC_URI:append:rock-pro-64 = " \
+    file://0001-rockchip-update-rockpro64-v2-for-SPI.patch \
+    file://0002-dts-rockpro64-ensure-eMMC-is-enabled.patch \
+    file://0003-rockchip-enable-usb-gadget.patch \
+    file://0004-dts-rockpro64-enable-usb-otg-gadget.patch \
+"
+
 SRC_URI:append:rk-u-boot-env = " file://rockchip-enable-environment-mmc.cfg"
 
 DEPENDS:append:rk3308 = " u-boot-tools-native"
